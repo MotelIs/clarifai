@@ -224,6 +224,10 @@ Clarifai.prototype.getAPIDetails = function(cb) {
 Clarifai.prototype.tagFromUrls = function(type, urls, cb, lang) {
   var data = _encodeTagUrls(urls, lang)
 
+  if (this.model) {
+    data += '&model=' + this.model
+  }
+
   _request('post', 'tag', data, this.options, this, function(err, body) {
     if(err) {
       return cb(err)
@@ -257,11 +261,13 @@ Clarifai.prototype.tagFromBuffers = function(type, buffers, cb, lang) {
 function Clarifai (opts) {
   opts = opts || {
     id: process.env.CLARIFAI_ID,
-    secret: process.env.CLARIFAI_SECRET
+    secret: process.env.CLARIFAI_SECRET,
+    model: process.env.CLARIFAI_MODEL
   }
 
   this.id = opts.id
   this.secret = opts.secret
+  this.model = opts.model
   this.options = {}
 }
 
