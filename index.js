@@ -111,8 +111,7 @@ var formatImageResults = function(body) {
     var tags = _.map(tagResults, function(tag) {
       return {
         class: tag[0],
-        conceptId: tag[1],
-        probability: tag[2]
+        probability: tag[1]
       }
     })
     var ret = {
@@ -140,8 +139,7 @@ var formatVideoResults = function(body) {
         tags: _.map(timeStampResults, function(tsResult) {
           return {
             class: tsResult[0],
-            conceptId: tsResult[1],
-            probability: tsResult[2]
+            probability: tsResult[1]
           }
         })
       }
