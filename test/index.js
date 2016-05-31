@@ -220,6 +220,17 @@ describe('#Feedback', function() {
     })
   });
 
+  it('should add tags or give positive feedback for tags to a image url', function(done) {
+    var url = "https://images.close5.com/v1/items/5585c9cb739098c819001c8c/image?number=0"
+    var tags = ['car','dashboard','driving']
+    client.addTagsForUrl(url, tags, function(err, resp) {
+      should.not.exist(err)
+      resp.should.have.property('status_code').with.string('OK')
+      resp.should.have.property('status_msg')
+      done()
+    })
+  });
+
   it('should remove tags or give negative feedback for tags to a docid', function(done) {
     var docIds = ['78c742b9dee940c8cf2a06f860025141']
     var tags = ['sky','clean','red']

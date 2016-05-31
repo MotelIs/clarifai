@@ -183,6 +183,14 @@ Clarifai.prototype.addTags = function(docIds, tags, cb) {
   _request('post', 'feedback', data, this.options, this, cb)
 }
 
+Clarifai.prototype.addTagsForUrl = function(url, tags, cb) {
+  var data = ''
+  data +='url=' + encodeURIComponent(url)
+  data +='&add_tags=' + _array(tags).join(',')
+
+  _request('post', 'feedback', data, this.options, this, cb)
+}
+
 Clarifai.prototype.removeTags = function(docIds, tags, cb) {
   var data = ''
   data +='docids=' + _array(docIds).join(',')
